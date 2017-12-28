@@ -3,12 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Spring MVC -->
 	<context:component-scan base-package="org.cdx" />
@@ -22,13 +24,31 @@
 	</bean>
 
 	<!-- Data Source -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSourceMaster" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/wishingwell" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
+	<bean id="dataSourceReplica" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/wishingwell" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	<!-- multi data source config start -->
+    <bean id="dataSource" class="org.cdx.ww.datasource.RoutingDataSource">
+	    <property name="targetDataSources">
+	        <map key-type="java.lang.String">
+	            <entry key="MASTER" value-ref="dataSourceMaster"></entry>
+	            <entry key="REPLICA" value-ref="dataSourceReplica"></entry>
+	        </map>
+	    </property>
+	    <property name="defaultTargetDataSource" ref="dataSourceMaster" />
+	</bean>
+	<!-- multi data source config end -->
 
 	<!-- transaction manager, use JtaTransactionManager for global tx -->
 	<bean id="transactionManager"
@@ -54,19 +74,7 @@
 		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
 	</bean>
 
-	<!-- multi data source config start -->
-    <!-- <bean id="dataSource" class="org.cdx.ww.datasource.RoutingDataSource">
-	    <property name="targetDataSources">
-	        <map key-type="java.lang.String">
-	            <entry key="MASTER" value-ref="dataSourceMaster"></entry>
-	            <entry key="REPLICA" value-ref="dataSourceReplica"></entry>
-	        </map>
-	    </property>
-	    <property name="defaultTargetDataSource" ref="dataSourceMaster" />
-	</bean> -->
-	<!-- multi data source config end -->
-
 	<!-- Enable aop annotation -->
-    <!-- <aop:aspectj-autoproxy /> -->
+    <aop:aspectj-autoproxy />
 
 </beans>

@@ -14,7 +14,7 @@ public class DataSourceAspect implements Ordered {
 
 	private int order;
 
-    @Value("1")
+    @Value("10")
     public void setOrder(int order) {
         this.order = order;
     }

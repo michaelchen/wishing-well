@@ -1,8 +1,10 @@
 package org.cdx.ww.service;
 
 import org.cdx.ww.dao.UserMapper;
+import org.cdx.ww.datasource.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class HelloWorldService {
@@ -18,6 +20,8 @@ public class HelloWorldService {
 		this.userMapper = userMapper;
 	}
 	
+	@Transactional
+	@DataSource("MASTER")
 	public int getUserCount() {
 		return userMapper.getUserCount();
 	}
