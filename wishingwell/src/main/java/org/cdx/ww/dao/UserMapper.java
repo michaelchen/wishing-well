@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserMapper {
-	@Select("SELECT count(*) FROM users")
-	int getUserCount();
+	@Select("SELECT count(*) FROM users where id = #{id}")
+	int getUserCount(int id);
 }

@@ -1,29 +1,11 @@
 package org.cdx.ww.service;
 
-import org.cdx.ww.dao.UserMapper;
-import org.cdx.ww.datasource.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.cdx.ww.entity.Account;
 
-@Service
-public class HelloWorldService {
-	
-	@Autowired
-	private UserMapper userMapper;
+public interface HelloWorldService {
 
-	public UserMapper getUserMapper() {
-		return userMapper;
-	}
+	public int getUserCount();
 
-	public void setUserMapper(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-	
-	@Transactional
-	@DataSource("MASTER")
-	public int getUserCount() {
-		return userMapper.getUserCount();
-	}
-	
+	public Account getAccount(int id);
+
 }

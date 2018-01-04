@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+    	<!-- 打印sql日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+	<typeAliases>
+        <!-- 指定实体类 别名扫描包，mapper.xml文件中只需要写上实体类名即可，不区分大小写 -->
+        <package name="org.cdx.ww.mapper"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接信息 --> <!-- 数据源类型有三种： UNPOOLED POOLED JNDI -->
+            <dataSource type="POOLED"> 
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/wishingwell" />
+                <property name="username" value="root" />
+                <property name="password" value="root" />
+            </dataSource>
+        </environment>
+    </environments>
+    
+    <mappers>
+        <!-- 注册accountMapper.xml文件， 
+        userMapper.xml位于me.gacl.mapping这个包下，所以resource写成me/gacl/mapping/userMapper.xml-->
+        <mapper resource="org/cdx/ww/dao/xml/accountMapper.xml"/>
+    </mappers>
+    
+</configuration>

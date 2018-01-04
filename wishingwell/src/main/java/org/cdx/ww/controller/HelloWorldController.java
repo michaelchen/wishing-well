@@ -11,10 +11,21 @@ public class HelloWorldController {
 
 	@Autowired
 	private HelloWorldService hwService;
-	
+
 	@RequestMapping("/welcome")
 	public ModelAndView helloWorld() {
 		String countStr = "" + hwService.getUserCount();
 		return new ModelAndView("welcome", "message", countStr);
 	}
+	
+	@RequestMapping("/saysth")
+	public ModelAndView saySth() {
+		return new ModelAndView("saysth", "message", "wow, I really want to say something...");
+	}
+	
+	@RequestMapping("/getAccount")
+	public ModelAndView getAccount() {
+		return new ModelAndView("saysth", "message", hwService.getAccount(1));
+	}
+
 }

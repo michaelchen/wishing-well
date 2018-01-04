@@ -4,13 +4,15 @@
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	 http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
 	<!-- Spring MVC -->
 	<context:component-scan base-package="org.cdx" />
@@ -59,8 +61,17 @@
 	<!-- enable transaction demarcation with annotations -->
 	<tx:annotation-driven />
 
+	<!-- MyBatis SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:org/cdx/ww/mapper/**/*Mapper.xml"/>
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
+		<!-- An alternative way to configure mybatis configuration -->
+		<!-- <property name="configuration">	
+		    <bean class="org.apache.ibatis.session.Configuration">
+		      <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl" />
+		    </bean>
+		</property> -->
 	</bean>
 
 	<!-- <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
@@ -68,11 +79,12 @@
 		name="sqlSessionFactory" ref="sqlSessionFactory" /> </bean> -->
 
 	<!-- MyBastic Mapper Scanner -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.cdx.ww.dao" />
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.cdx.ww" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
-	</bean>
+	</bean> -->
+	<mybatis:scan base-package="org.cdx.ww" factory-ref="sqlSessionFactory" annotation="org.springframework.stereotype.Repository" />
 
 	<!-- Enable aop annotation -->
     <aop:aspectj-autoproxy />
