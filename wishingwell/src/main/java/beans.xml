@@ -4,10 +4,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p = "http://www.springframework.org/schema/p"
 	xmlns:aop = "http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
    http://www.springframework.org/schema/aop 
-   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Definition for textEditor bean -->
 	<!-- <bean id="textEditor" class="org.cdx.ww.test.TextEditor">
@@ -79,7 +81,7 @@
 	<bean id = "customEventHandler" class = "org.cdx.ww.test.CustomEventHandler"/>
     <bean id = "customEventPublisher" class = "org.cdx.ww.test.CustomEventPublisher"/> -->
     
-    <aop:config>
+    <!-- <aop:config>
       <aop:aspect id = "log" ref = "logging">
          <aop:pointcut id = "selectAll" 
             expression = "execution(* org.cdx.ww.test.*.*(..))"/>
@@ -94,12 +96,60 @@
       </aop:aspect>
    </aop:config>
 
-   <!-- Definition for student bean -->
-   <bean id = "student" class = "org.cdx.ww.test.Student">
-      <property name = "name" value = "Zara" />
-      <property name = "age" value = "11"/>      
+
+   Definition for logging aspect
+   <bean id = "logging" class = "org.cdx.ww.test.Logging"/>
+
+   <bean id = "helloWorld" class = "org.cdx.ww.test.HelloWorld" scope="singleton" init-method="init" destroy-method="destroy">
+   </bean>
+   
+   <bean id="beanTemplate" abstract="true">
+   		<property name="message1" value="Hello World" />
+   		<property name="message2" value="Hello World 2" />
+   		<property name="message3" value="Hello China" />
+   </bean>
+   <bean id = "helloChina" class="org.cdx.ww.test.HelloChina" parent="beanTemplate">
+   		<property name="message3" value="Hello China message 3" />
+   </bean>
+   
+   <bean id="initHelloWorld" class = "org.cdx.ww.test.InitHelloWorld" /> -->
+   
+   <!-- <aop:aspectj-autoproxy/> -->
+
+   <!-- Initialization for data source -->
+   <bean id="dataSource" 
+      class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
+      <property name = "url" value = "jdbc:mysql://localhost:3306/wishingwell"/>
+      <property name = "username" value = "root"/>
+      <property name = "password" value = "root"/>
+   </bean>
+  
+   <!-- <tx:advice id = "txAdvice" transaction-manager = "transactionManager">
+      <tx:attributes>
+      <tx:method name = "create"/>
+      </tx:attributes>
+   </tx:advice>
+	
+   <aop:config>
+      <aop:pointcut id = "createOperation" 
+         expression = "execution(* org.cdx.ww.test.StudentJDBCTemplate.create(..))"/>
+      
+      <aop:advisor advice-ref = "txAdvice" pointcut-ref = "createOperation"/>
+   </aop:config> -->
+	
+   <!-- Initialization for TransactionManager -->
+   <bean id = "transactionManager"
+      class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      
+      <property name = "dataSource" ref = "dataSource" />    
    </bean>
 
-   <!-- Definition for logging aspect -->
-   <bean id = "logging" class = "org.cdx.ww.test.Logging"/>
+   <!-- Definition for studentJDBCTemplate bean -->
+   <bean id = "studentJDBCTemplate"  
+      class = "org.cdx.ww.test.StudentJDBCTemplate">
+      <property name = "transactionManager" ref = "transactionManager"/>  
+      <property name = "dataSource" ref = "dataSource"/>  
+   </bean>
+
 </beans>
