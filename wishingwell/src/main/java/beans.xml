@@ -1,0 +1,105 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p = "http://www.springframework.org/schema/p"
+	xmlns:aop = "http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+	<!-- Definition for textEditor bean -->
+	<!-- <bean id="textEditor" class="org.cdx.ww.test.TextEditor">
+		<constructor-arg index="0" ref="spellChecker" />
+		<constructor-arg index="1" type="java.lang.String"
+			value="hehehehe" />
+	</bean> -->
+	<!-- Definition for textEditor bean -->
+	<!-- <bean id = "textEditor" class = "org.cdx.ww.test.TextEditor" autowire="byType">
+		<constructor-arg ref="spellChecker"></constructor-arg>
+   	</bean>
+	<bean id="textEditor" class="org.cdx.ww.test.TextEditor" p:message="hahaha" p:spellChecker-ref="spellChecker">
+	</bean>
+	
+	<bean id = "spellChecker" class = "org.cdx.ww.test.SpellChecker"></bean>
+	
+	Definition for javaCollection
+   <bean id = "javaCollection" class = "org.cdx.ww.test.JavaCollection">
+      
+      results in a setAddressList(java.util.List) call
+      <property name = "addressList">
+         <list>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USA</value>
+            <ref bean="textEditor" />
+         </list>
+      </property>
+
+      results in a setAddressSet(java.util.Set) call
+      <property name = "addressSet">
+         <set>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USA</value>
+            <ref bean="textEditor" />
+         </set>
+      </property>
+
+      results in a setAddressMap(java.util.Map) call
+      <property name = "addressMap">
+         <map>
+            <entry key = "1" value = "INDIA"/>
+            <entry key = "2" value = "Pakistan"/>
+            <entry key = "3" value = "USA"/>
+            <entry key = "4" value = "USA"/>
+            <entry key="5" value-ref="textEditor" />
+            <entry key = "6" value = ""/>
+         </map>
+      </property>
+      
+      results in a setAddressProp(java.util.Properties) call
+      <property name = "addressProp">
+         <props>
+            <prop key = "one">INDIA</prop>
+            <prop key = "one">INDIA</prop>
+            <prop key = "two">Pakistan</prop>
+            <prop key = "three">USA</prop>
+            <prop key = "four">USA</prop>
+         </props>
+      </property>
+   </bean>
+   
+   <bean id = "cStartEventHandler" class = "org.cdx.ww.test.CStartEventHandler"/>
+   <bean id = "cStopEventHandler" class = "org.cdx.ww.test.CStopEventHandler"/>
+
+	<bean id = "customEventHandler" class = "org.cdx.ww.test.CustomEventHandler"/>
+    <bean id = "customEventPublisher" class = "org.cdx.ww.test.CustomEventPublisher"/> -->
+    
+    <aop:config>
+      <aop:aspect id = "log" ref = "logging">
+         <aop:pointcut id = "selectAll" 
+            expression = "execution(* org.cdx.ww.test.*.*(..))"/>
+         
+         <aop:before pointcut-ref = "selectAll" method = "beforeAdvice"/>
+         <aop:after pointcut-ref = "selectAll" method = "afterAdvice"/>
+         <aop:after-returning pointcut-ref = "selectAll" 
+            returning = "retVal" method = "afterReturningAdvice"/>
+         
+         <aop:after-throwing pointcut-ref = "selectAll" 
+            throwing = "ex" method = "AfterThrowingAdvice"/>
+      </aop:aspect>
+   </aop:config>
+
+   <!-- Definition for student bean -->
+   <bean id = "student" class = "org.cdx.ww.test.Student">
+      <property name = "name" value = "Zara" />
+      <property name = "age" value = "11"/>      
+   </bean>
+
+   <!-- Definition for logging aspect -->
+   <bean id = "logging" class = "org.cdx.ww.test.Logging"/>
+</beans>
