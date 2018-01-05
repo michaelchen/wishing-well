@@ -114,6 +114,10 @@
    
    <bean id="initHelloWorld" class = "org.cdx.ww.test.InitHelloWorld" /> -->
    
+   <bean id = "helloWorld" class = "org.cdx.ww.test.HelloWorld" >
+   		<property name="message" value="HW" />
+   </bean>
+   
    <!-- <aop:aspectj-autoproxy/> -->
 
    <!-- Initialization for data source -->

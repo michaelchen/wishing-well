@@ -1,13 +1,12 @@
 package org.cdx.ww.test;
 
-import java.util.Arrays;
-import java.util.List;
-
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
+	
+	static Logger log = Logger.getLogger(TestSpring.class.getName());
 
 	public static void main(String[] args) {
 //		ApplicationContext applicationContext =  new ClassPathXmlApplicationContext("beans.xml");
@@ -106,34 +105,41 @@ public class TestSpring {
 //	  System.out.print(", Name : " + student.getName() );
 //	  System.out.println(", Age : " + student.getAge());
 		
-      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-
-      StudentDAO studentJDBCTemplate = 
-         (StudentDAO)context.getBean("studentJDBCTemplate");
-      
-      System.out.println("------Records creation--------" );
-      studentJDBCTemplate.create("Zara", 11, 99, 2010);
-      studentJDBCTemplate.create("Nuha", 20, 97, 2010);
-      studentJDBCTemplate.create("Ayan", 25, 100, 2011);
-
-      System.out.println("------Listing all the records--------" );
-      List<StudentMarks> studentMarks = studentJDBCTemplate.listStudents();
-      
-      for (StudentMarks record : studentMarks) {
-         System.out.print("ID : " + record.getId() );
-         System.out.print(", Name : " + record.getName() );
-         System.out.print(", Marks : " + record.getMarks());
-         System.out.print(", Year : " + record.getYear());
-         System.out.println(", Age : " + record.getAge());
-      }
-      
-      int[] a = {1, 2, 3, 4, 5};
-      int[] b = a;
-      for (int i = 0;i < a.length; i++) {
-    	  a[i] = a[i] * 2;
-      }
-      System.out.println(Arrays.toString(a));
-      System.out.println(Arrays.toString(b));
+//      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+//
+//      StudentDAO studentJDBCTemplate = 
+//         (StudentDAO)context.getBean("studentJDBCTemplate");
+//      
+//      System.out.println("------Records creation--------" );
+//      studentJDBCTemplate.create("Zara", 11, 99, 2010);
+//      studentJDBCTemplate.create("Nuha", 20, 97, 2010);
+//      studentJDBCTemplate.create("Ayan", 25, 100, 2011);
+//
+//      System.out.println("------Listing all the records--------" );
+//      List<StudentMarks> studentMarks = studentJDBCTemplate.listStudents();
+//      
+//      for (StudentMarks record : studentMarks) {
+//         System.out.print("ID : " + record.getId() );
+//         System.out.print(", Name : " + record.getName() );
+//         System.out.print(", Marks : " + record.getMarks());
+//         System.out.print(", Year : " + record.getYear());
+//         System.out.println(", Age : " + record.getAge());
+//      }
+//      
+//      int[] a = {1, 2, 3, 4, 5};
+//      int[] b = a;
+//      for (int i = 0;i < a.length; i++) {
+//    	  a[i] = a[i] * 2;
+//      }
+//      System.out.println(Arrays.toString(a));
+//      System.out.println(Arrays.toString(b));
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		  log.info("Going to create HelloWord Obj");
+		  HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
+		  obj.getMessage();
+		  
+		  log.info("Exiting the program");
 	}
 
 }
