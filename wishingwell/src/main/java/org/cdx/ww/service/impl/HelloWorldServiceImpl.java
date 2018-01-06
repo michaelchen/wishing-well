@@ -18,22 +18,6 @@ public class HelloWorldServiceImpl implements HelloWorldService {
 	@Autowired
 	private AccountMapper accountMapper;
 
-	public AccountMapper getAccountMapper() {
-		return accountMapper;
-	}
-
-	public void setAccountMapper(AccountMapper accountMapper) {
-		this.accountMapper = accountMapper;
-	}
-
-	public UserMapper getUserMapper() {
-		return userMapper;
-	}
-
-	public void setUserMapper(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-
 	@Transactional
 	@DataSource("MASTER")
 	public int getUserCount() {

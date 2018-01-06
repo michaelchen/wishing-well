@@ -7,6 +7,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.cdx.ww.dao.AccountMapper;
 import org.cdx.ww.entity.Account;
 
 public class TestMyBatis {
@@ -35,6 +36,10 @@ public class TestMyBatis {
         List<Account> list = session.selectList(statement, 1);
         System.out.println(user);
         System.out.println(list);
+        
+        AccountMapper am = session.getMapper(AccountMapper.class);
+        Account a = am.getAccount(1);
+        System.out.println("Another way to get account =" + a);
     }
 
 }

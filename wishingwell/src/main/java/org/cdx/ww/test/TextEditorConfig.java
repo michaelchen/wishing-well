@@ -3,14 +3,14 @@ package org.cdx.ww.test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class TextEditorConfig {
-   @Bean 
+   //@Bean 
    public TextEditor textEditor(){
       return new TextEditor( spellChecker() );
    }
 
-   @Bean 
+   //@Bean 
    public SpellChecker spellChecker(){
       return new SpellChecker( );
    }

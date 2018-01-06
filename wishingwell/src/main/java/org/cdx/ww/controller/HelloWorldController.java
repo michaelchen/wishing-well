@@ -11,6 +11,11 @@ public class HelloWorldController {
 
 	@Autowired
 	private HelloWorldService hwService;
+	
+	@RequestMapping
+	public ModelAndView index() {
+		return new ModelAndView("welcome", "message", "default");
+	}
 
 	@RequestMapping("/welcome")
 	public ModelAndView helloWorld() {

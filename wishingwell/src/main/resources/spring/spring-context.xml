@@ -14,16 +14,10 @@
 	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	 http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
-	<!-- Spring MVC -->
-	<context:component-scan base-package="org.cdx" />
-
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!-- Scan -->
+	<context:component-scan base-package="org.cdx" use-default-filters="true">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 
 	<!-- Data Source -->
 	<bean id="dataSourceMaster" class="org.apache.commons.dbcp.BasicDataSource"

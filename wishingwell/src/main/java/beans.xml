@@ -114,20 +114,20 @@
    
    <bean id="initHelloWorld" class = "org.cdx.ww.test.InitHelloWorld" /> -->
    
-   <bean id = "helloWorld" class = "org.cdx.ww.test.HelloWorld" >
+   <!-- <bean id = "helloWorld" class = "org.cdx.ww.test.HelloWorld" >
    		<property name="message" value="HW" />
-   </bean>
+   </bean> -->
    
    <!-- <aop:aspectj-autoproxy/> -->
 
    <!-- Initialization for data source -->
-   <bean id="dataSource" 
+   <!-- <bean id="dataSource" 
       class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
       <property name = "url" value = "jdbc:mysql://localhost:3306/wishingwell"/>
       <property name = "username" value = "root"/>
       <property name = "password" value = "root"/>
-   </bean>
+   </bean> -->
   
    <!-- <tx:advice id = "txAdvice" transaction-manager = "transactionManager">
       <tx:attributes>
@@ -143,17 +143,17 @@
    </aop:config> -->
 	
    <!-- Initialization for TransactionManager -->
-   <bean id = "transactionManager"
+   <!-- <bean id = "transactionManager"
       class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
       
       <property name = "dataSource" ref = "dataSource" />    
-   </bean>
+   </bean> -->
 
    <!-- Definition for studentJDBCTemplate bean -->
-   <bean id = "studentJDBCTemplate"  
+   <!-- <bean id = "studentJDBCTemplate"  
       class = "org.cdx.ww.test.StudentJDBCTemplate">
       <property name = "transactionManager" ref = "transactionManager"/>  
       <property name = "dataSource" ref = "dataSource"/>  
-   </bean>
+   </bean> -->
 
 </beans>
