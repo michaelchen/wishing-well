@@ -26,5 +26,13 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!-- interceptor -->
+	<mvc:interceptors>  
+	    <mvc:interceptor>  
+	        <mvc:mapping path="/**"/>  
+	        <bean class="org.cdx.ww.interceptor.LoginInterceptor"></bean>  
+	    </mvc:interceptor>  
+	</mvc:interceptors> 
 
 </beans>

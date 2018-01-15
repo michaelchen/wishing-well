@@ -16,4 +16,8 @@
 	<select id="getAccount" parameterType="int" resultMap="accountResultMap">
 		select * from account where id=#{id}
 	</select>
+
+	<select id="findAccount" parameterType="org.cdx.ww.entity.Account" resultMap="accountResultMap">
+		select * from account where account=#{account} AND password=#{password}
+	</select>
 </mapper>

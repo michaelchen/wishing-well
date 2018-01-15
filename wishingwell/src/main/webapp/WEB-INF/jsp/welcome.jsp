@@ -1,8 +1,8 @@
 <html>
 <head>
-<title>Spring Hello World</title>
+<title>Wishing Well</title>
 </head>
 <body>
-message:${message}
+Welcome to Wishing Well project!
 </body>
 </html>
