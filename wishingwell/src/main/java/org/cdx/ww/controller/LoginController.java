@@ -40,9 +40,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="/logout")  
-    public String logout(HttpSession session) throws Exception{  
+    public String logout(HttpSession session) {  
         session.invalidate();  
-        return "redirect:hello.action";  
+        return "redirect:login";
     }
 
 }
