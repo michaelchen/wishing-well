@@ -26,13 +26,17 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 	<!-- interceptor -->
 	<mvc:interceptors>  
 	    <mvc:interceptor>  
 	        <mvc:mapping path="/**"/>  
 	        <bean class="org.cdx.ww.interceptor.LoginInterceptor"></bean>  
 	    </mvc:interceptor>  
-	</mvc:interceptors> 
+	</mvc:interceptors>
+	
+	<mvc:default-servlet-handler/>
+	<mvc:annotation-driven />
+	<mvc:resources location="/static/" mapping="/static/**" />
 
 </beans>

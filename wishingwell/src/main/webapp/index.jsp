@@ -1,7 +1,7 @@
 <html lang="en"><head>
   <meta charset="UTF-8">
   <title>Demo</title>
-  <link rel="stylesheet" href="/wishingwell/index.css">
+  <link rel="stylesheet" href="static/index.css">
 </head>
 <body>
 <h2>Hello World! This is the beginninng...</h2>
@@ -15,7 +15,7 @@
 </div>
 </div>
 
-<script type="text/javascript" src="common.js"></script>
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="static/common.js"></script>
+<script type="text/javascript" src="static/index.js"></script>
 
 </body></html>
