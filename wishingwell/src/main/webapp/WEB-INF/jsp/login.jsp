@@ -7,7 +7,7 @@
    <body>
    	<div style="margin-left:600px;">
       <h2>Login</h2>
-      <form:form method = "POST" action = "/wishingwell/auth">
+      <form:form method = "POST" action = "/wishingwell/login">
          <table>
             <tr>
                <td><form:label path = "account">Account</form:label></td>

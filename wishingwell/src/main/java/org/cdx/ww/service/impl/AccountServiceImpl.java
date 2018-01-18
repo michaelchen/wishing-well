@@ -24,4 +24,10 @@ public class AccountServiceImpl implements AccountService {
 		return true;
 	}
 
+	@Transactional
+	@DataSource("MASTER")
+	public Account getAccount(String account) {
+		return accountMapper.getAccountByAccount(account);
+	}
+
 }

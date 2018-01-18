@@ -18,6 +18,19 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>org.cdx.ww.listener.SessionLifeCycleEventExample</listener-class>
+	</listener>
+
+	<filter>
+        <filter-name>characterEncodingFilter</filter-name>    
+        <filter-class>org.cdx.ww.filter.CharacterEncodingFilter</filter-class>    
+	</filter>
+
+	<filter-mapping>    
+		<filter-name>characterEncodingFilter</filter-name>    
+		<url-pattern>/*</url-pattern>    
+	</filter-mapping>
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>

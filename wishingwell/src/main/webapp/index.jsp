@@ -1,10 +1,27 @@
+<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html lang="en"><head>
   <meta charset="UTF-8">
-  <title>Demo</title>
+  <title>Wishing Well Home</title>
   <link rel="stylesheet" href="static/index.css">
 </head>
 <body>
-<h2>Hello World! This is the beginninng...</h2>
+<h2>Welcome to Wishgin Well - The place where you can make your dream come true!</h2>
+<div style="margin-left:400px;">
+
+<a href="latestWishList">See the latest wishes...</a> <br>
+<a href="wishList">Check my wishes...</a>
+<form action="addWish" method="POST">
+<table>
+	<tr>
+		<td><input type="text" name = "content" placeholder="Type your wish here..." style="padding-right: 50px!important;width: 480px!important;" /></td>
+		<td>
+		   <input type = "submit" value = "Wish!"/>
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+
 <div id="root">
 	<div style="width: 400px; margin: 100px auto;">
 		<span class="ant-calendar-picker"><div><input readonly="" value="" placeholder="请选择日期" class="ant-calendar-picker-input ant-input"><span class="ant-calendar-picker-icon">

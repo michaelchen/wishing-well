@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.cdx.ww.dao.WishMapper">
+	<resultMap type="org.cdx.ww.entity.Wish" id="wishResultMap">
+		<id property="id" column="id" />
+		<result property="content" column="content" />
+		<result property="isFulfilled" column="is_fulfilled" />
+		<result property="accountId" column="account_id" />
+		<result property="account" column="account" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="fulfilledTime" column="fulfilled_time" />
+		<result property="fulfilledAccountId" column="fulfilled_account_id" />
+		<result property="fulfilledAccount" column="fulfilled_account" />
+		<result property="deleteFlg" column="delete_flg" />
+	</resultMap>
+
+	<insert id="addWish" parameterType="org.cdx.ww.entity.Wish">
+	   insert into wish(id, content, account_id, account) 
+		   values(#{id}, #{content}, #{accountId}, #{account})
+	</insert>
+
+	<select id="getWishList" parameterType="java.lang.String" resultMap="wishResultMap">
+		SELECT
+			*
+		FROM wish
+		WHERE account = #{account}
+	</select>
+	
+	<select id="getLatestWishList" resultMap="wishResultMap">
+		SELECT
+			*
+		FROM wish
+		WHERE is_fulfilled = 0
+		ORDER BY create_time DESC
+	</select>
+
+</mapper>

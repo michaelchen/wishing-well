@@ -6,4 +6,6 @@ public interface AccountService {
 
 	public boolean auth(Account account);
 
+	public Account getAccount(String account);
+
 }
