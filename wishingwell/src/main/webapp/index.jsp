@@ -1,11 +1,15 @@
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <title>Wishing Well Home</title>
   <link rel="stylesheet" href="static/index.css">
 </head>
 <body>
-<h2>Welcome to Wishgin Well - The place where you can make your dream come true!</h2>
+<h2 align="center">Welcome to Wishing Well - The place where you can make your dream come true!</h2>
+<c:if test="${sessionScope.username != null }">
+	<p style="text-align:right;"><a href="logout">Logout</a></p>
+</c:if>
 <div style="margin-left:400px;">
 
 <a href="latestWishList">See the latest wishes...</a> <br>

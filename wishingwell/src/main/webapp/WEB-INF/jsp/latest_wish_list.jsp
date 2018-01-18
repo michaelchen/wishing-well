@@ -6,8 +6,7 @@
 <title>latest_wish_list</title>
 </head>
 <body>
-<br>
-See what wishes out there? > >
+<h2 align="center">See what wishes out there? > ></h2>
 <table>
 	<thead>
 		<tr>

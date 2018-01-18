@@ -6,8 +6,7 @@
 <title>wish_list</title>
 </head>
 <body>
-<br>
-This is the wishing list page.
+<h2 align="center">This is the wishing list page.</h2>
 <table>
 	<thead>
 		<tr>
