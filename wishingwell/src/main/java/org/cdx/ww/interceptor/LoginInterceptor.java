@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// Get request URL
 		String url = request.getRequestURI();
 		// Intercept all URLs except login
-		if (url.endsWith("/login")) {
+		if (url.endsWith("/login") || url.endsWith("/register") || url.endsWith("/doRegister")) {
 			return true;
 		}
 		// Get Session

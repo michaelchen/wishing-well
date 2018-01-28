@@ -6,9 +6,8 @@
 
    <body>
    	<div style="margin-left:600px;">
-      <h2>Login</h2>
-       <h5>${sessionScope.message}</h5>
-      <form:form method = "POST" action = "/wishingwell/login">
+      <h2>Register</h2>
+      <form:form method = "POST" action = "/wishingwell/doRegister">
          <table>
             <tr>
                <td><form:label path = "account">Account</form:label></td>
@@ -20,13 +19,16 @@
             </tr>
             <tr>
                <td>
-                  <input type = "submit" value = "Login"/>
-               </td>
-               <td>
-                  <a href="register">Register</a>
+                  Re-Password
+                  <input type="input" name="password2"/>
                </td>
             </tr>
-         </table>  
+            <tr>
+               <td>
+                  <input type = "submit" value = "Register"/>
+               </td>
+            </tr>
+         </table>
       </form:form>
    	</div>
 </body>

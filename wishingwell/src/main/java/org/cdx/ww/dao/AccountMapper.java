@@ -9,5 +9,5 @@ public interface AccountMapper {
 	Account getAccount(int id);
 	Account findAccount(Account account);
 	Account getAccountByAccount(String account);
-
+	void insertAccount(Account acc);
 }

@@ -39,10 +39,22 @@ public class LoginController {
 		return new ModelAndView("auth", "message", result);
 	}
 
-	@RequestMapping(value="/logout")  
-    public String logout(HttpSession session) {  
-        session.invalidate();  
-        return "redirect:login";
-    }
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:login";
+	}
+
+	@RequestMapping(value="/register")
+	public ModelAndView register() {
+		return new ModelAndView("register", "command", new Account());
+	}
+
+	@RequestMapping(value="/doRegister")
+	public String doRegister(HttpSession session, @ModelAttribute("SpringWeb") Account acc) {
+		accountService.addAccount(acc);
+		session.setAttribute("message", "You've successfully registered! Please kindly login.");
+		return "redirect:login";
+	}
 
 }

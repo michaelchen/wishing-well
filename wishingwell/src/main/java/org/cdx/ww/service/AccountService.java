@@ -8,4 +8,6 @@ public interface AccountService {
 
 	public Account getAccount(String account);
 
+	public void addAccount(Account acc);
+
 }

@@ -19,4 +19,9 @@
 	<select id="findAccount" parameterType="org.cdx.ww.entity.Account" resultMap="accountResultMap">
 		select * from account where account=#{account} AND password=#{password}
 	</select>
+
+	<select id="insertAccount" parameterType="org.cdx.ww.entity.Account" >
+		insert into account(account, password)
+		values (#{account}, #{password})
+	</select>
 </mapper>

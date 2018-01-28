@@ -6,3 +6,8 @@ bin/
 .settings/
 .project
 .classpath
+
+# idea ignore
+out/
+.idea/
+wishingwell.iml

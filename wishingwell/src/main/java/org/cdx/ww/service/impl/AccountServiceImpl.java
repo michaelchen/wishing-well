@@ -30,4 +30,8 @@ public class AccountServiceImpl implements AccountService {
 		return accountMapper.getAccountByAccount(account);
 	}
 
+	public void addAccount(Account acc) {
+		accountMapper.insertAccount(acc);
+	}
+
 }
